@@ -11,10 +11,12 @@ import axios from 'axios';
 
 import background from '../assets/home/hero.png';
 import sample from '../assets/home/mini-sample.png';
-import plansBackground from '../assets/home/plansbg.png';
-import car01 from '../assets/home/car01.png';
+import plansBackground from '../assets/home/banner03.jpg';
 import car02 from '../assets/home/car02.png';
-import car03 from '../assets/home/car03.png';
+import car03 from '../assets/home/car03.jpg';
+import car04 from '../assets/home/car04.jpg';
+import car05 from '../assets/home/car05.jpg';
+import car06 from '../assets/home/car06.jpg';
 
 const Home = () => { 
   localStorage.clear();
@@ -96,16 +98,16 @@ const Home = () => {
 
       <Container fluid className="d-flex justify-content-around align-items-center plans-section" style={plans}> 
         <div>
-          <p className="text-primary text-center title-of-plans">Plans</p>
+          {/* <p className="text-primary text-center title-of-plans">Plans</p> */}
           <Row sm={1} md={2} lg={3} className='text-center'>
             <Col>
-              <PlanCard text='Loose Weight' onLearnMore={handleLearnMore} ofPlan='lw'/>
+              <PlanCard text='Loose Weight' onLearnMore={handleLearnMore} ofPlan='lw' desc='Your journey through your new self starts here'/>
             </Col>
             <Col>
-            <PlanCard text='Gain Weight' onLearnMore={handleLearnMore} ofPlan='gw'/>
+            <PlanCard text='Gain Weight' onLearnMore={handleLearnMore} ofPlan='gw' desc='The only limits you got are the ones you put to yourself'/>
             </Col>
             <Col>
-            <PlanCard text='Build Muscle' onLearnMore={handleLearnMore} ofPlan='bm'/>
+            <PlanCard text='Build Muscle' onLearnMore={handleLearnMore} ofPlan='bm' desc='Unlock your true potential'/>
             </Col>
           </Row>
         </div>
@@ -116,15 +118,11 @@ const Home = () => {
         <p className='h1 text-dark text-center'>#RAISETHEBAR</p>
         <br />
         <Carousel fade data-bs-theme="dark">
-          <Carousel.Item>
-            <Image src={car01}/>
-          </Carousel.Item>
-          <Carousel.Item>
-          <Image src={car02}/>
-          </Carousel.Item>
-          <Carousel.Item>
-          <Image src={car03}/>
-          </Carousel.Item>
+            <Carousel.Item><Image src={car02} style={{width:"500px",height:'400px'}}/></Carousel.Item>
+            <Carousel.Item><Image src={car03} style={{width:"500px",height:'400px'}}/></Carousel.Item>
+            <Carousel.Item><Image src={car04} style={{width:"500px",height:'400px'}}/></Carousel.Item>
+            <Carousel.Item><Image src={car05} style={{width:"500px",height:'400px'}}/></Carousel.Item>
+            <Carousel.Item><Image src={car06} style={{width:"500px",height:'400px'}}/></Carousel.Item>
         </Carousel>
       </Container>
 

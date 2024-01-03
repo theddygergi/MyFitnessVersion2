@@ -13,7 +13,7 @@ const corsOptions = {
 const app = express();
 const port = 8081;
 
-const db = new sqlite3.Database('C:/Users/eddyg/OneDrive/Desktop/myfitnessv2/backend/myfitness.db');
+const db = new sqlite3.Database('/Users/dynamiceye/Documents/GitHub/MyFitnessVersion2/backend/myfitness.db');
 app.use(express.json());
 app.use(cors(corsOptions));
 

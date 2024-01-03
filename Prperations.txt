@@ -1,0 +1,8 @@
+Terminal 1
+cd ../backend
+npm i express sqlite3 nodemon cors body-parser
+npm start
+
+Terminal 2
+npm i
+npm start

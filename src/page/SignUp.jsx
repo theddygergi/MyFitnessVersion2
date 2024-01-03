@@ -31,17 +31,14 @@ export default function SignUp({comeBackToSignIn,stateComeBackToSignIn}) {
     console.log("button pressed");
     e.preventDefault();
     try {
-      // Send the signup request
       const response = await axios.post('http://localhost:8081/api/signup', formData);
       
-      // Set user data using the email from the form
       setUserData({ useremail: formData.semail });
       console.log(response.data);
       setError(null);
   
       const userIDResponse = await axios.get(`http://localhost:8081/api/userid/${formData.semail}`);
       const userID = userIDResponse.data.user.userid;
-  
       const defaultProgress = await axios.post(`http://localhost:8081/api/userprogress/${userID}`);
   
       navigate('/sign-in');
