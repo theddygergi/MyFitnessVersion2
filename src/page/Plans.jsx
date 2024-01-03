@@ -1,8 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
+import {
+  Container,Row,Col,Image,Button
+} from 'react-bootstrap';
 import axios from 'axios';
 
 import Header from './global/Header';
 import userContext from '../UserContext';
+import Footer from './global/Footer';
 
 export default function Plans() {
   const [plans, setPlans] = useState([]);
@@ -59,24 +63,46 @@ export default function Plans() {
   }, [goalID]);
 
   return (
-    <div>
-      <div className='plans'>
+    <Container fluid className='p-0'>
+      <Row fluid>
         <Header ofPage="plans" />
-        <ul>
-          {plans.map((item, index) => (
-            <li key={index}> 
-            {item.exerciseid} {item.exercisename} {item.exercisenbofsets}</li>
-          ))}
-        </ul>
-      </div>
-      <br/>
-      <div>
-        <ul>
-          {meals.map((item, index) => (
-            <li key={index}>{item.foodname}</li>
-          ))}
-        </ul>
-      </div>
-    </div>
+      </Row>
+      <Row className='bg-primary plans-container' sm={1} md={2}>
+        <Col>
+            <Col className='plan-header'>
+             hi
+            </Col>
+            <Col className='plan-header'>
+             bye
+            </Col>
+        </Col>
+        <Col>
+            div
+        </Col>
+      </Row>
+      <Row>
+        <Footer />
+      </Row>
+    </Container> 
   )
 }
+
+    // <div>
+    //   <div className='plans'>
+    //     <Header ofPage="plans" />
+    //     <ul>
+    //       {plans.map((item, index) => (
+    //         <li key={index}> 
+    //         {item.exerciseid} {item.exercisename} {item.exercisenbofsets}</li>
+    //       ))}
+    //     </ul>
+    //   </div>
+    //   <br/>
+    //   <div>
+    //     <ul>
+    //       {meals.map((item, index) => (
+    //         <li key={index}>{item.foodname}</li>
+    //       ))}
+    //     </ul>
+    //   </div>
+    // </div>

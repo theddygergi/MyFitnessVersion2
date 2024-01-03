@@ -7,17 +7,11 @@ import Profile from './page/Profile';
 import SignIn from './page/SignIn';
 import SignUp from './page/SignUp';
 import NotFound from './page/NotFound';
+
 import userContext from './UserContext';
 
 const Routing = () => {
   const [userData, setUserData] = useState({ useremail: null });
-  const [user, setUser] = useState(null);
-
-  const handleSignIn = (username) => {
-    setUser(username);
-  };
-
-
 
   return (
     <userContext.Provider value={{ userData, setUserData }}>
