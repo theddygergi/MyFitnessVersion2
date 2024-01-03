@@ -65,7 +65,6 @@ export default function Plans() {
         <ul>
           {plans.map((item, index) => (
             <li key={index}> 
-            <img src={item.exerciseimagesrc} />
             {item.exerciseid} {item.exercisename} {item.exercisenbofsets}</li>
           ))}
         </ul>
