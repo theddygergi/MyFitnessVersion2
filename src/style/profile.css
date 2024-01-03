@@ -1,0 +1,13 @@
+.user-information{
+    width:100%;
+    .information{
+        width:70%;
+        margin-left:15%;
+    }
+    .information-row01{
+        svg{
+            width:100px;
+            height:75px;
+        }
+    }
+}
