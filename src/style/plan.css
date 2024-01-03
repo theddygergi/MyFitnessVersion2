@@ -1,0 +1,8 @@
+.plans-container{
+    .plans-container{
+        min-height:80vh;
+    }
+    .plan-exercice{
+        min-height: 60vh;
+    }
+}
