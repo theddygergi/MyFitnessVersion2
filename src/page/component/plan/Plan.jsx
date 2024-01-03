@@ -1,6 +1,8 @@
 import React from 'react'
 
-export default function Plan() {
+import pups from '../../../assets/workouts/'
+
+export default function Plan({onNext,currentId,currentWorkout}) {
   return (
     <div className="p-3">
         <div className="p-3 bg-light">

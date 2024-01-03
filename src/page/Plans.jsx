@@ -20,8 +20,8 @@ export default function Plans() {
 
   // const [active,setActive]=useState(0);
 
-  function handleNextExercice(){
-
+  function handleNextExercice(currentWorkoutId){
+      console.log('button clicked')
   }
 
   const fetchID = async () => {
@@ -98,10 +98,11 @@ export default function Plans() {
                   }
                   <br />
                   {plans.map((item, index) => (
-                     <p className={item.exerciceid === wnb ? 'text-primary' : ''} key={index}>
-                     Exercice {index + 1} : {item.exerciseid} {item.exercisename} {item.exercisenbofsets}
-                      </p>
+                    <p className={item.exerciseid === wnb ? 'text-primary' : ''} key={index}>
+                      Exercice {index + 1} : {item.exerciseid} {item.exercisename} {item.exercisenbofsets}
+                    </p>
                   ))}
+
               </div>
               <div className='plan-diet mt-3 p-3 bg-light'>
                 <br />
@@ -115,7 +116,7 @@ export default function Plans() {
            </div>
           </Col>
           <Col className='p-3 plan-exercice ' sm={8}>
-            <Plan />
+            <Plan onNext={handleNextExercice} currentId={wnb} currentWorkout={workout} />
           </Col>
       </Row>
       <Row>
