@@ -16,12 +16,24 @@ export default function Plans() {
   const { userData } = useContext(userContext);
 
   const [workout,setWorkout]=useState({});
-  let [wnb,setWnb]=useState();
+  let [wnb,setWnb]=useState(0);
+
+  const [ShowOnlyMeal,setShowOnlyMeal]=useState(false);
 
   // const [active,setActive]=useState(0);
 
-  function handleNextExercice(currentWorkoutId){
-      console.log('button clicked')
+  function handleNextExercice(currentNb) {
+    console.log('button clicked');
+    if(wnb < 11   ) {
+      setWnb(wnb + 1);
+    }else{
+      setShowOnlyMeal(true);
+    }
+    plans.forEach((newTarget, index) => {
+      if (index === (currentNb+1)) {
+        setWorkout(newTarget);
+      }
+    });
   }
 
   const fetchID = async () => {
@@ -55,12 +67,9 @@ export default function Plans() {
     try {
       const response = await axios.get(`http://localhost:8081/api/exongoal/${goalID}`);
       setPlans(response.data);
-      setWorkout(plans[0])
-      setWnb( plans[0].exerciseid )
+      setWorkout(response.data[0])
       setPlans(response.data);
       console.log(response.data);
-      console.log(workout)
-      console.log(wnb)
     } catch (error) {
       console.error('Error fetching plan data:', error);
     }
@@ -76,6 +85,49 @@ export default function Plans() {
       fetchMealData();
     }
   }, [goalID]);
+
+  if(ShowOnlyMeal){
+    return (
+      <Container fluid className='p-0'>
+      <Row fluid>
+        <Header ofPage="plans" />
+      </Row>
+      <br />
+      <Row className='bg-primary  plans-container p-3'>
+        <Col className='p-3' sm={4}>
+           <div className='p-3'>
+              <div className='plan-diet mt-3 p-3 bg-light'>
+                <br />
+                <div className="h3 text-primary text-center">Meal Plan</div>
+                <div className="p-3">
+                  {meals.map((item, index) => (
+                    <p key={index}>Meal {index+1} :{item.foodname}</p>
+                  ))}
+                </div>
+              </div>
+           </div>
+          </Col>
+          <Col className='p-3 d-flex align-items-center justify-content-center' sm={8}>
+                    <div className=' p-3'>
+                      <div className="p-3">
+                      <div className=' p-4'>
+                        <br />
+                        <p className="h1 text-center text-light float">GOOD JOB</p>
+                        <br />
+                        <p className='text-light' >Your body deserve to rest and eat well!</p>
+                        <br />
+                      </div>
+                      </div>
+                    </div>
+          </Col>
+      </Row>
+      <Row>
+        <Footer />
+      </Row>
+    </Container> 
+    )
+  }
+
 
   return (
     <Container fluid className='p-0'>
@@ -98,7 +150,7 @@ export default function Plans() {
                   }
                   <br />
                   {plans.map((item, index) => (
-                    <p className={item.exerciseid === wnb ? 'text-primary' : ''} key={index}>
+                    <p className={index === wnb ? 'text-primary' : ''} key={index}>
                       Exercice {index + 1} : {item.exerciseid} {item.exercisename} {item.exercisenbofsets}
                     </p>
                   ))}
@@ -116,7 +168,7 @@ export default function Plans() {
            </div>
           </Col>
           <Col className='p-3 plan-exercice ' sm={8}>
-            <Plan onNext={handleNextExercice} currentId={wnb} currentWorkout={workout} />
+            <Plan onNext={handleNextExercice} currentNb={wnb} currentWorkout={workout} />
           </Col>
       </Row>
       <Row>

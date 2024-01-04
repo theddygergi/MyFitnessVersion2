@@ -56,7 +56,7 @@ export default function SignUp({comeBackToSignIn,stateComeBackToSignIn}) {
 
   return (
     <Container fluid className="sign-container bg-primary vh-100 d-flex align-items-center justify-content-center" >
-      <Row sm={1} className="sign-row bg-light border rounded p-5">
+      <Row sm={1} className="sign-row bg-light border rounded p-3">
         <Col className="sign-header d-flex justify-content-between align-items-center">
           <div className="sign header-item header-logo pulse"><Link to="/" ><Image src={logo} style={{width:'150px',height:'40px',cursor:'pointer' ,opacity:'0.95'}}/></Link></div>
           <div className="sign-header-item sign-header-item-close"><Button onClick={(()=>(handleNavigateHome()))} size='lg' variant="outline-primary" className="bg-transparent border-0 text-primary opacity-transition"><FaDoorClosed style={{width:'20px',height:'20px' ,opacity:'0.95'}}/></Button></div>

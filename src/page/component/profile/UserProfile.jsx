@@ -33,10 +33,27 @@ export default function UserProfile() {
             bg-white border rounded
             information information-row01"
             >
-                <div className='text-center '><BiSolidUserCircle/><p className='h5'>{userInfo.username}</p></div>
+                <div className='text-center text-primary '>
+                  <br />
+                  <p className='h1'>{userInfo.username}</p>
+                  <br />
+                  <p>Track your way through the plan</p>
+                  <br />
+                  {
+                    userInfo.goalid == '1'
+                      ? <p className='h3 text-primary text-center'>Lose Weight</p>
+                      :userInfo.goalid == '2'
+                        ? <p className='h3 text-primary text-center'>Gain Weight</p>
+                        : userInfo.goalid == '3'
+                          ? <p className='h3 text-primary text-center'>Build Muscle</p>
+                          : <p className='h3 text-primary text-center'>Your Plan</p>
+                  }
+                  <br />
+                </div> 
                 <div className="information"></div>
             </div>
         </div>
     </div>
   )
 }
+// <BiSolidUserCircle/>
