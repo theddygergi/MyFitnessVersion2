@@ -13,7 +13,7 @@ const app = express();
 const port = 8081;
 
 const db = new sqlite3.Database(
-  "C:/Users/Charbel/Desktop/MyFitnessVersion2/backend/myfitness.db"
+  "C:/Users/eddyg/OneDrive/Desktop/MyFitnessVersion2/backend/myfitness.db"
 );
 app.use(express.json());
 app.use(cors(corsOptions));
@@ -211,10 +211,8 @@ app.get("/api/userinfo/:usermail", (req, res) => {
 });
 
 app.post("/api/addusertoclass", (req, res) => {
-  const { userid, classid } = req.body;
-
-  // Validate that both userid and classid are provided in the request body
-  if (!userid || !classid) {
+  const { userid, indexFetch } = req.body;
+  if (!userid || !indexFetch) {
     return res.status(400).json({
       error: "Both userid and classid are required in the request body",
     });
@@ -222,10 +220,10 @@ app.post("/api/addusertoclass", (req, res) => {
 
   db.run(
     "INSERT INTO userclass (userid, classid) VALUES (?, ?)",
-    [userid, classid],
+    [userid, indexFetch],
     (err) => {
       if (err) {
-        console.error("Database error:", err);
+        console.log("Database error:", err);
         return res.status(500).json({ error: "Internal Server Error" });
       }
 

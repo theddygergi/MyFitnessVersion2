@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
+import userContext from '../UserContext';
 import { Container,Row,Col,Button,Image } from 'react-bootstrap';
 import Header from './global/Header';
 import Footer from './global/Footer'
@@ -12,6 +13,23 @@ import zumba from '../../src/assets/classes/zumba.jpg';
 
 export default function Classes() {
   const [classes, setClasses] = useState([]);
+  const [userID, setUserID] = useState('');
+  const { userData } = useContext(userContext);
+
+  const fetchUserID = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8081/api/userid/${userData.useremail}`
+      );
+      const { success, user } = response.data;
+      if (success) {
+        const { userid } = user || {};
+        setUserID(userid);
+      }
+    } catch (error) {
+      console.error("Error fetching user ID:", error);
+    }
+  };
 
   const fetchData = async () => {
     try {
@@ -23,9 +41,12 @@ export default function Classes() {
     }
   };
 
+
+
   useEffect(() => {
+    fetchUserID();
     fetchData();
-  }, []);
+  }, [userData.useremail]);
 
   const [bg,setBg]=useState(0)
   let RowBannerStyle;
@@ -70,14 +91,18 @@ export default function Classes() {
     setBg(index);
   }
 
-  function handleClick(indexFetch){
-    try{
-      console.alert("Joined Class")
-    }catch(err){
-      console.err("Error Registering To Class: ",classes[indexFetch].classname,"\nERROR:",err)
+  const handleClick = async (userid, indexFetch) => {
+    try {
+      const response = await axios.post('http://localhost:8081/api/addusertoclass', {
+        userid,
+        indexFetch
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error('Error adding user to class:', error);
     }
   }
-
+  
   return (
     <div>
       <Header ofPage='classes' />
@@ -91,7 +116,7 @@ export default function Classes() {
                     <p className="h2 text-primary text-center">{item.classname}</p>
                     <p className="h5 text-dark text-center">{item.classdescription}</p>
                     <br />
-                    { index==bg && <Button onClick={(()=>(handleClick(index)))} variant='outline-primary' size='sm' >Join Class</Button>}
+                    { index==bg && <Button onClick={(()=>(handleClick(userID,index+1)))} variant='outline-primary' size='sm' >Join Class</Button>}
                 </div>
              </Col>))
              }
