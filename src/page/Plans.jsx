@@ -161,7 +161,7 @@ export default function Plans() {
                 <div className="p-3">
                   {meals.map((item, index) => (
                     <p key={index}>
-                      Meal {index + 1} :{item.foodname}
+                      Meal {index + 1} : {" "}{item.foodname}
                     </p>
                   ))}
                 </div>
@@ -216,8 +216,7 @@ export default function Plans() {
               <br />
               {plans.map((item, index) => (
                 <p className={index === wnb ? "text-primary" : ""} key={index}>
-                  Exercice {index + 1} : {item.exerciseid} {item.exercisename}{" "}
-                  {item.exercisenbofsets}
+                  Exercice {index + 1} : {item.exercisename}{" "}
                 </p>
               ))}
             </div>
