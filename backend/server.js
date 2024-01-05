@@ -176,7 +176,7 @@ app.get("/api/mealplan/:id", (req, res) => {
   );
 });
 
-app.post("/api/userprogress/:userid", (req, res) => {
+app.post("/api/userprogressdef/:userid", (req, res) => {
   const userid = req.params.userid;
   db.run(
     "INSERT INTO userprogress (userid, usergoalprogress, userworkoutprogress) VALUES (?, ?, ?)",

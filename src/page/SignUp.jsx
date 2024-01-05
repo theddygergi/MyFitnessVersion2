@@ -40,7 +40,7 @@ export default function SignUp({comeBackToSignIn,stateComeBackToSignIn}) {
   
       const userIDResponse = await axios.get(`http://localhost:8081/api/userid/${formData.semail}`);
       const userID = userIDResponse.data.user.userid;
-      const defaultProgress = await axios.post(`http://localhost:8081/api/userprogress/${userID}`);
+      const defaultProgress = await axios.post(`http://localhost:8081/api/userprogressdef/${userID}`);
   
       navigate('/sign-in');
     } catch (error) {
