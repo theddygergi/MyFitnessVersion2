@@ -4,6 +4,10 @@ import axios from 'axios';
 import Header from './global/Header';
 
 import ClassCard from './component/Classes/ClassCard';
+import steps from '../../src/assets/classes/steps.jpg';
+import yoga from '../assets/classes/yoga.jpg';
+import zumba from '../../src/assets/classes/zumba.jpg';
+
 
 export default function Classes() {
   const [classes, setClasses] = useState([]);
@@ -31,10 +35,10 @@ export default function Classes() {
         ))}
       </ul>
     </div>
-    <ClassCard text=' Yoga class' />
+    <ClassCard text=' Yoga class' image= {yoga} />
     <br></br>
-    <ClassCard text=' Zumba Class' />
+    <ClassCard text=' Zumba Class' image={zumba} />
     <br></br>
-    <ClassCard text=' Steps Class' /></>
+    <ClassCard text=' Steps Class' image={steps} /></>
   );
 }
