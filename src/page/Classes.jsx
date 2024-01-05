@@ -3,6 +3,8 @@ import axios from 'axios';
 
 import Header from './global/Header';
 
+import ClassCard from './component/Classes/ClassCard';
+
 export default function Classes() {
   const [classes, setClasses] = useState([]);
 
@@ -21,7 +23,7 @@ export default function Classes() {
   }, []);
 
   return (
-    <div className='classes'>
+    <><div className='classes'>
       <Header ofPage="classes" />
       <ul>
         {classes.map((item, index) => (
@@ -29,5 +31,10 @@ export default function Classes() {
         ))}
       </ul>
     </div>
+    <ClassCard text=' Yoga class' />
+    <br></br>
+    <ClassCard text=' Zumba Class' />
+    <br></br>
+    <ClassCard text=' Steps Class' /></>
   );
 }
