@@ -28,7 +28,7 @@ const SignIn = () => {
       if (response.data.success) {
           console.log("log-in success")
           setError(null);
-          navigate('/');
+          navigate('/plans');
           
       } else {
           setError("Invalid USERNAME or PASSWORD");

@@ -4,3 +4,8 @@
         color:white;
     }
  }
+
+ .link-to-signin:hover{
+    cursor: pointer;
+    opacity:0.9s
+ }

@@ -1,3 +1,4 @@
+
 import axios from "axios";
 import React, { useContext, useState } from "react";
 import { useNavigate,Link } from "react-router-dom";
@@ -26,7 +27,6 @@ export default function SignUp({comeBackToSignIn,stateComeBackToSignIn}) {
 
   const handleInputChange = (e) => {
     setFormData(prevState => ({ ...prevState, [e.target.name]: e.target.value }));
-    //console.log(e.target.value)
   };
 
   const handleSubmitSignUp = async (e) => {
@@ -152,38 +152,39 @@ export default function SignUp({comeBackToSignIn,stateComeBackToSignIn}) {
             </div>
 
             <div className="d-flex justify-content-around align-items-center">
-              <Form.Group controlId="sgender">
-                <FloatingLabel controlId="sign-up-sgender" label="Gender" className="mb-3">
-                  <Form.Select
-                    value={formData.sgender}
-                    onChange={(e) => handleInputChange(e)}
-                    name="sgender"
-                    required
-                    as="select"
-                  >
-                    <option value=''>Choose Gender</option>
-                    <option value="M">Male</option>
-                    <option value="F">Female</option>
-                  </Form.Select>
-                </FloatingLabel>
-              </Form.Group>
+            <Form.Group controlId="sgender">
+              <FloatingLabel
+                controlId="sign-up-sgender"
+                label="Gender"
+                className="mb-3"
+              >
+                <Form.Control
+                  type="text"
+                  placeholder="Enter M or F"
+                  value={formData.sgender}
+                  name="sgender"
+                  onChange={(e) => handleInputChange(e)}
+                  required
+                />
+              </FloatingLabel>
+            </Form.Group>
 
-              <Form.Group controlId="sgoalID">
-                <FloatingLabel controlId="sign-up-sgoalID" label="Pick Your Plan" className="mb-3">
-                  <Form.Select
-                    value={formData.sgoalID}
-                    onChange={(e) => handleInputChange(e)}
-                    name="sgoalID"
-                    required
-                    as="select"
-                  >
-                    <option value=''>Pick Your Plan</option>
-                    <option value="1">Lose Weight</option>
-                    <option value="2">Gain Weight</option>
-                    <option value="3">Build Muscle</option>
-                  </Form.Select>
-                </FloatingLabel>
-              </Form.Group>
+            <Form.Group controlId="sgoalID">
+              <FloatingLabel
+                controlId="sign-up-sgoalID"
+                label="Goal"
+                className="mb-3"
+              >
+                <Form.Control
+                  type="text"
+                  placeholder="Enter your goal"
+                  value={formData.sgoalID}
+                  name="sgoalID"
+                  onChange={(e) => handleInputChange(e)}
+                  required
+                />
+              </FloatingLabel>
+            </Form.Group>
             </div>
 
             {error && <p className="text-danger">{error}</p>}

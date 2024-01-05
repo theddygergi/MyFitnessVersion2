@@ -24,20 +24,20 @@ export default function Plans() {
   // const [active,setActive]=useState(0);
 
   const handleNextExercice = (currentNb) => {
-    console.log("button clicked");
-    if (wnb < 11) {
-      setWnb(wnb + 1);
+    console.log("button clicked: ",currentNb);
+    if (currentNb < 11) {
+      setWnb(currentNb + 1);
     } else {
       setShowOnlyMeal(true);
     }
-    const currentWorkout = plans[currentNb + 1];
+    const currentWorkout = plans[currentNb];
     const exerciseid = currentWorkout ? currentWorkout.exerciseid : "";
     const workoutid = currentWorkout ? currentWorkout.workoutid : "";
     setExerciseID(exerciseid);
     setWorkoutID(workoutid);
 
     plans.forEach((newTarget, index) => {
-      if (index === currentNb + 1) {
+      if (index == currentNb+1) {
         setWorkout(newTarget);
         achieveWorkout(userID, goalID, workoutID, exerciseID);
         addProgress();

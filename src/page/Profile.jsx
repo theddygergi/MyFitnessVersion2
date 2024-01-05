@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 import Header from './global/Header';
 import userContext from '../UserContext';
@@ -35,7 +36,12 @@ export default function Profile() {
       if (response.status === 200) {
         const { userProgress } = response.data;
         console.log('User Progress:', userProgress);
-        setProgress([parseInt(userProgress)]);
+        if([parseInt(userProgress)]>100){
+          setProgress(100);
+        } else {
+          setProgress([parseInt(userProgress)])
+        }
+       
       } else {
         console.error('Failed to get user progress');
         setError('Failed to get user progress');
@@ -58,12 +64,21 @@ export default function Profile() {
     }
   }, [userID]);
 
+  const navigate=useNavigate();
+  function handleSignIn(){
+    navigate('/sign-in');
+  }
+
   return (
     <div className='profile'>
       <Header ofPage="profile" />
-      <br />
-      <UserProfile />
-      {loading && <p>Loading...</p>}
+      <br /><br />
+      {!loading && <UserProfile />}
+      {loading && 
+        <div className="d-flex align-items-center justify-content-center" style={{height:'60vh',}}>
+          <p onClick={(()=>(handleSignIn()))} className="link-to-signin h1 text-center text-primary">LOG IN TO VIEW</p>
+        </div>
+      }
       {error && <p>Error: {error}</p>}
       {!loading && !error && <Chart data={progress} />}
     </div>

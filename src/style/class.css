@@ -1,0 +1,6 @@
+.class-card:hover{
+    cursor:pointer;
+    background-color: rgba(255, 255, 255, 0.288)!important;
+    transition:0.7s;
+}
+
