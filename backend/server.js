@@ -210,7 +210,7 @@ app.get("/api/userinfo/:usermail", (req, res) => {
   });
 });
 
-app.post("/api/addusertoclass/", (req, res) => {
+app.post("/api/addusertoclass", (req, res) => {
   const { userid, classid } = req.body;
 
   // Validate that both userid and classid are provided in the request body
