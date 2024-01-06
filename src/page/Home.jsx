@@ -84,7 +84,7 @@ const Home = () => {
           <Col className='p-3 d-flex align-items-center justify-content-center'>
             <div className='mx-3'>
               <p className='h3 px-3 mx-3 mb-3'>Pick the class that suits your comfort</p>
-              <p className='h6 p-3 mx-3 my-2'>Welcome to our fitness app, where a diverse library of classes awaits to cater to your unique habits and preferences. Whether you're an early riser or a night owl, a yoga enthusiast or a high-intensity workout lover, we have a variety of classes designed to fit effortlessly into your lifestyle. Our platform offers a rich variety of workouts led by experienced instructors, ensuring there's something for everyone.<br/>So...What are you waiting for?</p>
+              <p className='h6 p-3 mx-3 my-2 '>Welcome to our fitness app, where a diverse library of classes awaits to cater to your unique habits and preferences. Whether you're an early riser or a night owl, a yoga enthusiast or a high-intensity workout lover, we have a variety of classes designed to fit effortlessly into your lifestyle. Our platform offers a rich variety of workouts led by experienced instructors, ensuring there's something for everyone.<br/>So...What are you waiting for?</p>
               <div className="px-3 mx-3 mt-3"> <Button onClick={() => handleJoinClass()} className='p-0 bg-transparent border-0 text-primary pulse' variant='outline-primary'>Join a Class</Button> </div>
             </div>
           </Col>
