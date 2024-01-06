@@ -55,7 +55,7 @@ const SignIn = () => {
             <Form.Group controlId="username">
               <FloatingLabel
                 controlId="sign-in-username"
-                label="Username"
+                label="Email"
                 className="mb-3"
               >
                 <Form.Control
