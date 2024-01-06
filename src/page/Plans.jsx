@@ -18,15 +18,16 @@ export default function Plans() {
 
   const [workout, setWorkout] = useState({});
   let [wnb, setWnb] = useState(0);
-
   const [ShowOnlyMeal, setShowOnlyMeal] = useState(false);
 
   // const [active,setActive]=useState(0);
 
   const handleNextExercice = (currentNb) => {
-    console.log("button clicked: ",currentNb);
+    
+    console.log("button clicked: ", currentNb);
     if (currentNb < 11) {
       setWnb(currentNb + 1);
+      
     } else {
       setShowOnlyMeal(true);
     }
@@ -36,14 +37,17 @@ export default function Plans() {
     setExerciseID(exerciseid);
     setWorkoutID(workoutid);
 
+  
     plans.forEach((newTarget, index) => {
-      if (index == currentNb+1) {
+      if (index === currentNb + 1) {
         setWorkout(newTarget);
         achieveWorkout(userID, goalID, workoutID, exerciseID);
         addProgress();
       }
     });
+  
   };
+
 
   const addProgress = async () => {
     try {
@@ -144,6 +148,8 @@ export default function Plans() {
       fetchMealData();
     }
   }, [goalID]);
+  
+  
 
   if (ShowOnlyMeal) {
     return (

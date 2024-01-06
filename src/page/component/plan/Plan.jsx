@@ -64,7 +64,7 @@ export default function Plan({ onNext, currentNb, currentWorkout }) {
             {currentWorkout.exercisetype}
           </p>
           <p className="h5">
-            Number of set:{" "}
+            Number of sets:{" "}
             <span className="text-primary">
               {currentWorkout.exercisenbofsets}
             </span>

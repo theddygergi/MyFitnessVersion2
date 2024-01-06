@@ -13,7 +13,7 @@ const app = express();
 const port = 8081;
 
 const db = new sqlite3.Database(
-  "C:/Users/user/Desktop/MyFitnessVersion2/backend/myfitness.db"
+  "C:/Users/eddyg/OneDrive/Desktop/MyFitnessVersion2/backend/myfitness.db"
 );
 app.use(express.json());
 app.use(cors(corsOptions));
