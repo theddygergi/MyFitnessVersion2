@@ -10,13 +10,14 @@ import PlanCard from './component/home/PlanCard';
 import axios from 'axios';
 
 import background from '../assets/home/hero.png';
-import sample from '../assets/home/mini-sample.png';
+//import sample from '../assets/home/mini-sample.png';
 import plansBackground from '../assets/home/banner03.jpg';
 import car02 from '../assets/home/car02.png';
 import car03 from '../assets/home/car03.jpg';
 import car04 from '../assets/home/car04.jpg';
 import car05 from '../assets/home/car05.jpg';
 import car06 from '../assets/home/car06.jpg';
+import mockup from '../assets/home/mockup.jpg'
 
 const Home = () => { 
   localStorage.clear();
@@ -79,7 +80,7 @@ const Home = () => {
       <div style={postHeroStyle}>
         <Row sm={1} md={2}>
           <Col className='d-glex d-lg-none justify-content-center align-items-center p-3 float'>
-            <Image src={sample} style={{width:'300px'}} />
+            <Image src={mockup} style={{width:'400px'}} />
           </Col>
           <Col className='p-3 d-flex align-items-center justify-content-center'>
             <div className='mx-3'>
@@ -89,7 +90,7 @@ const Home = () => {
             </div>
           </Col>
           <Col className='d-none d-lg-flex justify-content-center align-items-center p-3 float'>
-            <Image src={sample} style={{width:'400px'}} />
+            <Image src={mockup} style={{width:'400px'}} />
           </Col>
         </Row>
       </div>
