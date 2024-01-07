@@ -22,26 +22,21 @@ const Home = () => {
   localStorage.clear();
 
   const navigate=useNavigate();
-  const [looseWeight,setLooseWeight]=useState(false);
-  const [gainWeight,setGainWeight]=useState(false);
-  const [buildMuscle,setBuildMuscle]=useState(false);
-  const [gotFromHome,setGotFromHome]=useState(false);
-
+  // const [looseWeight,setLooseWeight]=useState(false);
+  // const [gainWeight,setGainWeight]=useState(false);
+  // const [buildMuscle,setBuildMuscle]=useState(false);
+  // const [gotFromHome,setGotFromHome]=useState(false);
   const handleJoinClass = () => {
     navigate('/classes');
   };
-
-  localStorage.setItem('navigatedToClass',gotFromHome);
+  //localStorage.setItem('navigatedToClass',gotFromHome);
   const handleLearnMore=(plan)=>{
-    if(plan==='lw'){setLooseWeight(true)}
-    else if(plan==='gw'){setGainWeight(true)}
-    else {setBuildMuscle(true)}
-
-    setGotFromHome(true);
-
-    localStorage.setItem('navigatedToClass',gotFromHome);
-
     navigate('/plans');
+    // if(plan==='lw'){setLooseWeight(true)}
+    // else if(plan==='gw'){setGainWeight(true)}
+    // else {setBuildMuscle(true)}
+    // setGotFromHome(true);
+    // localStorage.setItem('navigatedToClass',gotFromHome);
   };
 
   const heroStyle = {
@@ -117,12 +112,12 @@ const Home = () => {
         <br /><br />
         <h1 className='h1 text-dark text-center'>#RAISETHEBAR</h1>
         <br />
-        <Carousel fade data-bs-theme="dark">
-            <Carousel.Item><Image src={car02} style={{width:"500px",height:'400px'}}/></Carousel.Item>
-            <Carousel.Item><Image src={car03} style={{width:"500px",height:'400px'}}/></Carousel.Item>
-            <Carousel.Item><Image src={car04} style={{width:"500px",height:'400px'}}/></Carousel.Item>
-            <Carousel.Item><Image src={car05} style={{width:"500px",height:'400px'}}/></Carousel.Item>
-            <Carousel.Item><Image src={car06} style={{width:"500px",height:'400px'}}/></Carousel.Item>
+        <Carousel fade data-bs-theme="dark" interval={2000}>
+            <Carousel.Item><Image src={car02} style={{width:"600px",height:'400px'}}/></Carousel.Item>
+            <Carousel.Item><Image src={car03} style={{width:"600px",height:'400px'}}/></Carousel.Item>
+            <Carousel.Item><Image src={car04} style={{width:"600px",height:'400px'}}/></Carousel.Item>
+            <Carousel.Item><Image src={car05} style={{width:"600px",height:'400px'}}/></Carousel.Item>
+            <Carousel.Item><Image src={car06} style={{width:"600px",height:'400px'}}/></Carousel.Item>
         </Carousel>
       </Container>
 

@@ -32,7 +32,7 @@ export default function PlanCard({ text, onLearnMore, ofPlan, desc }) {
   }
 
   return (
-    <div className='card d-flex justify-content-center align-items-center mx-4' style={cardBackground}>
+    <div onClick={(()=>(onLearnMore()))} className='card d-flex justify-content-center align-items-center mx-4' style={cardBackground}>
       <div className='normalShow d-flex align-items-center justify-content-center'>
         <p className='text-light h1 p-0 m-0'>{text}</p>
       </div>

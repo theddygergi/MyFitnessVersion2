@@ -72,10 +72,10 @@ export default function Profile() {
   return (
     <div className='profile'>
       <Header ofPage="profile" />
-      <br /><br />
+      <br />
       {!loading && <UserProfile />}
       {loading && 
-        <div className="d-flex align-items-center justify-content-center" style={{height:'60vh',}}>
+        <div className="d-flex align-items-center justify-content-center" style={{height:'70vh',}}>
           <p onClick={(()=>(handleSignIn()))} className="link-to-signin h1 text-center text-primary">LOG IN TO VIEW</p>
         </div>
       }

@@ -6,6 +6,7 @@ import Header from "./global/Header";
 import userContext from "../UserContext";
 import Footer from "./global/Footer";
 import Plan from "./component/plan/Plan";
+import { useNavigate } from "react-router-dom";
 
 export default function Plans() {
   const [plans, setPlans] = useState([]);
@@ -20,7 +21,8 @@ export default function Plans() {
   let [wnb, setWnb] = useState(0);
   const [ShowOnlyMeal, setShowOnlyMeal] = useState(false);
 
-  // const [active,setActive]=useState(0);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const handleNextExercice = (currentNb) => {
     
@@ -90,7 +92,7 @@ export default function Plans() {
       }
     } catch (error) {
       console.error("Error fetching user ID:", error);
-    }
+    } 
   };
 
   const fetchID = async () => {
@@ -132,6 +134,7 @@ export default function Plans() {
       setWorkout(response.data[0]);
       setPlans(response.data);
       console.log(response.data);
+      setLoading(false)
     } catch (error) {
       console.error("Error fetching plan data:", error);
     }
@@ -145,11 +148,13 @@ export default function Plans() {
   useEffect(() => {
     if (goalID) {
       fetchData();
-      fetchMealData();
+      fetchMealData(); 
     }
   }, [goalID]);
+
   
-  
+  const navigate=useNavigate();
+  function handleSignIn(){navigate('/sign-in')}
 
   if (ShowOnlyMeal) {
     return (
@@ -157,8 +162,9 @@ export default function Plans() {
         <Row fluid>
           <Header ofPage="plans" />
         </Row>
-        <br />
+        { !loading && 
         <Row className="bg-primary  plans-container p-3">
+          <br />
           <Col className="p-3" sm={4}>
             <div className="p-3">
               <div className="plan-diet mt-3 p-3 bg-light">
@@ -192,7 +198,12 @@ export default function Plans() {
               </div>
             </div>
           </Col>
-        </Row>
+        </Row>}
+        {loading && 
+          <div className="d-flex align-items-center justify-content-center" style={{height:'60vh',}}>
+            <p onClick={(()=>(handleSignIn()))} className="link-to-signin h1 text-center text-primary">LOG IN TO VIEW</p>
+          </div>
+        }
         <Row>
           <Footer />
         </Row>
@@ -205,8 +216,9 @@ export default function Plans() {
       <Row fluid>
         <Header ofPage="plans" />
       </Row>
-      <br />
-      <Row className="bg-primary  plans-container p-3">
+       <br />
+      { !loading &&
+        <Row className="bg-primary  plans-container p-3">
         <Col className="p-3" sm={4}>
           <div className="p-3">
             <div className="bg-light p-4 mb-3 plan-header">
@@ -246,10 +258,18 @@ export default function Plans() {
             currentWorkout={workout}
           />
         </Col>
-      </Row>
-      <Row>
+        </Row>
+      }
+      {loading && 
+        <div className="d-flex align-items-center justify-content-center" style={{height:'70vh',}}>
+          <p onClick={(()=>(handleSignIn()))} className="link-to-signin h1 text-center text-primary">LOG IN TO VIEW</p>
+        </div>
+      }
+      { !loading &&
+        <Row>
         <Footer />
       </Row>
+      }
     </Container>
   );
 }
