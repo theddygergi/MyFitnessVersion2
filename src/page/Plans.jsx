@@ -24,31 +24,33 @@ export default function Plans() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const handleNextExercice = (currentNb) => {
-    
+  const handleNextExercise = async (currentNb) => {
     console.log("button clicked: ", currentNb);
+  
     if (currentNb < 11) {
       setWnb(currentNb + 1);
-      
     } else {
       setShowOnlyMeal(true);
     }
+  
     const currentWorkout = plans[currentNb];
     const exerciseid = currentWorkout ? currentWorkout.exerciseid : "";
     const workoutid = currentWorkout ? currentWorkout.workoutid : "";
     setExerciseID(exerciseid);
     setWorkoutID(workoutid);
-
   
-    plans.forEach((newTarget, index) => {
+    plans.forEach(async (newTarget, index) => {
       if (index === currentNb + 1) {
         setWorkout(newTarget);
-        achieveWorkout(userID, goalID, workoutID, exerciseID);
-        addProgress();
+        const exists = await seeAchieveWorkout(userID, goalID, workoutID, exerciseID);
+        if (!exists) {
+          achieveWorkout(userID, goalID, workoutID, exerciseID);
+          addProgress();
+        }
       }
     });
-  
   };
+  
 
 
   const addProgress = async () => {
@@ -79,6 +81,30 @@ export default function Plans() {
       console.error(error.message);
     }
   };
+
+  const seeAchieveWorkout = async (userid, goalid, workoutid, exerciseid) => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8081/api/seeprogress`,
+        {
+          params: {
+            userid,
+            goalid,
+            workoutid,
+            exerciseid,
+          },
+        }
+      );
+      const exists = response.data.exists;
+      console.log(`Record exists: ${exists}`);
+      return exists;
+    } catch (error) {
+      console.error(error.message);
+      return false; 
+    }
+};
+
+  
 
   const fetchUserID = async () => {
     try {
@@ -253,7 +279,7 @@ export default function Plans() {
         </Col>
         <Col className="p-3 plan-exercice " sm={8}>
           <Plan
-            onNext={handleNextExercice}
+            onNext={handleNextExercise}
             currentNb={wnb}
             currentWorkout={workout}
           />

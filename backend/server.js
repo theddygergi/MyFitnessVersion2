@@ -13,7 +13,7 @@ const app = express();
 const port = 8081;
 
 const db = new sqlite3.Database(
-  "C:/Users/Charbel/Desktop/MyFitnessVersion2/backend/myfitness.db"
+  "C:/Users/eddyg/OneDrive/Desktop/MyFitnessVersion2/backend/myfitness.db"
 );
 app.use(express.json());
 app.use(cors(corsOptions));
@@ -260,7 +260,7 @@ app.post("/api/updateprogress", (req, res) => {
       .json({ error: "Missing required fields in the request body" });
   }
 
-  db.run(
+  db.get(
     "INSERT INTO achieved (userid, goalid, workoutid, exerciseid) VALUES (?,?,?,?)",
     [userid, goalid, workoutid, exerciseid],
     (err) => {
@@ -275,6 +275,38 @@ app.post("/api/updateprogress", (req, res) => {
     }
   );
 });
+
+app.get("/api/seeprogress", (req, res) => {
+  const { userid, goalid, workoutid, exerciseid } = req.query;
+
+  if (!userid || !goalid || !workoutid || !exerciseid) {
+    return res
+      .status(400)
+      .json({ error: "Missing required fields in the request query parameters" });
+  }
+
+  db.get(
+    "SELECT userid, goalid, workoutid, exerciseid FROM achieved WHERE userid = ? AND goalid = ? AND workoutid = ? AND exerciseid = ?;",
+    [userid, goalid, workoutid, exerciseid],
+    (err, result) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).json({ error: "Internal Server Error" });
+      }
+
+      if (result) {
+        return res.status(200).json({ exists: true, data: result });
+      } else {
+        return res.status(200).json({ exists: false });
+      }
+    }
+  );
+});
+
+
+
+
+
 
 app.post("/api/addgoalprogress/:userid", (req, res) => {
   const userid = req.params.userid;
